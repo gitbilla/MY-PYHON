@@ -1,0 +1,866 @@
+Application Areas of Python
+
+1. Web Application Developement
+API Application 
+Desktop GUI Application Development
+DATA Analysis 
+AI
+Web Scrapping and text processing
+Selenuim testing with Python
+Automation
+
+Why Python is Popular
+
+Python is easy to learn because of its simple syntaxes
+Many Modules(Pre-defined and third party) roughly we have 147K modules
+Code lenght is very short because of third party modules
+Platform Independent (one script can be used on Win/Linux)
+Supports both Functional and Oops concepts
+
+
+Course Structure
+
+Core Python (basics of Python,Modules,Libraries,packages and Functions)
+Advanced Python(Oops)
+
+
+What is python
+Python is a powerful multi-purpose programming language created by Guido van Rossum
+
+Python versions
+There are two types of version
+2.x
+3.x (most of the output is object)
+
+latest version as if now is 3.7.3 to this day
+
+major difference between the two versions would be discussed later.
+
+
+Installing Python on Windows
+
+download from www.python.org
+
+I would like to go with 3.7.0 (web-based-installer)
+
+
+Installing Python on Linux
+
+download from www.python.org
+
+Python is already installed in Linux by Default,
+so while installing python : do not remove/change the existing python
+download source tar ball (copy the url)
+#wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0.tgz
+#tar -xvzf python37
+To compile python
+Install the dependencies
+
+yum install gcc openssl-devel bzip2-devel libffi-devel
+#cd Python37
+# ./configure --prefix=/home/abraham/ # path to install
+by default python installs at /usr/local/bin
+
+Compile the Source Code
+#make
+#make altinstall # installation
+cd /usr/local/bin
+./python3.7 --version
+which python3.7
+echo $PATH # check the path for /usr/local/bin
+create a soft link to make 3.7 to 3
+#ln -s python3.7 python3
+#ln -s pip3.7 pip3
+
+
+Editors for Python
+
+IDLE (Integrated Development Environment)
+VI/VIM
+PyCharm
+Spyder
+PyDev
+Atom
+Sublime Text
+
+*****************************************************************************************************
+Session one :  Basics of Python
+
+
+First script
+
+print("hello") # anything inside the quatation is a string
+
+Indentation:
+indent: space
+
+Indentations are used  to represent a block of code
+
+print("This is a script")
+if 3 > 1 :
+    print("print 1")
+    print("print 2")
+
+
+special Characters
+write special chahs only inside of quotes 
+\n new line
+\b Back space # print("hello \bworld")
+\ escape # print("python\'s class") or ("This is \"python" ")
+
+printing windows path
+print("C:\\Users\\abraham.billa\\Desktop\\New_lap\\PYTHON")
+
+\t tab # print("hello \tworld")
+\a alert sound
+
+
+
+WORKING with Variables
+
+
+What is Variable
+A reserved memory location to store values, 
+x=2
+print(x)
+print(type(x))
+NOte: Dont write quotes around the vairable name
+
+
+re-declare Variable 
+x=3
+print(x)
+
+Delete variable
+x=10
+print(10
+del x
+
+Rules to Define Variable
+1. contains letters numbers and underscores
+2. not a keyword (ex: if, for, print, )
+3. No space in the variables
+4. Do not start the Variable from Numbers
+5. case sensitive
+java_version=
+install_package="java"
+
+
+Data Types
+Every value in Python has a data type
+since everything is an object in python progrramming , data types are actually classes and variables are instance(object) of these
+classes.
+
+Basic Data types are:
+1. Numbers(float, int and complex)
+2. Strings
+3. Boolean
+
+x=3;y=5.6;z=3+4j
+print(x,y,z)
+
+x=3
+y=5.6
+z=3+4j
+print(x,type(x))
+print(y,type(y))
+print(z,type(z))
+
+
+lan_name="python - scripting" (this is a string )
+print(lan_name)
+
+Boolean
+my_value=True
+My_new_value=False
+
+print(my_name,type(my_value))
+print(my_new_name,type(my_new_value))
+
+
+memory location 
+x=5
+print(id(x))
+
+
+
+Type conversion
+
+x=56
+print(x,type(x))
+y=str(x)
+print(y,type(y))
+
+z=bool(x)
+print(z,type(z)))
+p=0
+print(p,type(p))
+q=bool(p)
+print(q,type(q))
+
+x=5.6
+print(int(x)
+
+my_name="python"
+print(my_name,type(my_name))
+
+Any data Type can be converted into boolean
+bool(empty)=False= bool(0),bool(None),bool([]),bool(()),bool({})
+bool(non-empty)=True
+
+Any data type can be converted into a string but the reverse is not always true.
+
+
+Print with Variables and Strings
+
+x=3
+y=5.7
+my_name="python-scripting"
+print(x)
+print("{} {} {}".format(x,y,my_name))  or print(f"{x} {y} {my_name}")
+print("{} \n{} \n{}".format(x,y,my_name))
+
+print(f"x value is: {x} \ny value is :{y} \nlast variable is : {my_name}")
+
+my_required=print(f"x value is: {x} \ny value is :{y} \nlast variable is : {my_name}")
+print(my_required)
+
+Input and Output Statements and Usage of eval Function
+
+#!/usr/bin/python
+#simple arthimetic calculator
+
+a=4
+b=8
+result=a+b
+print(f" The addition of {a} and {b} is: {result}" )
+
+a=input("Enter the Number")
+b=input("Enter the Number")
+print(f"The Value of a is: {a} and the type is : {type(a)}")
+
+or
+
+a=int(input("Enter the Number :"))
+b=int(input("Enter the Number :"))
+print(f"The Value of a is: {a} and the type is : {type(a)}")
+
+
+or
+
+a=eval(input("Enter x : "))
+print(a,type(a))
+
+for strings use "" with the value
+Enter x : "Hi"
+*******************************************************************************************************************************
+12:03 AM 8/29/2019
+
+				Working with Python Strings
+
+
+Whatis string ?
+
+string is a sequence of characters
+A character is a symbol 
+Computers do not deal with characters , they deal with numbers .Even though you may see characters on the scree,
+internally it is stored and manipulated as a combination of 0's and 1's
+This conversion of character to a number is called encoding and the reverse process is decoding ASCII and Unicode are some of the popular 
+encoding used
+In Python String is a sequenc of Unicode character.Unicode was introduced to include every character in all languages and bring uniformity in encoding.
+
+
+How to create a string
+
+my_name="Billa"
+my_new_name='Augustine'
+print(f' my name is: {my_name}\nmy_new_name is : {my_new_name}")
+
+Use triple quotes for multiple lines in the code.
+
+How to access Characters in a string
+
+my_str=""
+my_new_str=" "
+print(f'{bool(my_new_str)}' )
+
+my_fav_scripting='Python scripting'
+# indexing 
+my_fav_scripting='Python scripting'
+print(my_fav_scripting[2])
+print(my_fav_scripting[0:-1])
+print(my_fav_scripting[0:6])
+print(my_fav_scripting[0:]) # print all the values from 0 to last 
+print(my_fav_scripting[:5]) # 
+
+#Find Lenght of a string
+my_fav_scripting=len("Python scripting")
+print(f'Lenght of a string is : {my_fav_scripting}')
+or 
+print(len("my_fav_scripting"))
+
+#concatenation
+my_str1="python"
+my_str2="scripting"
+space_str=" "
+my_str3=my_str1+space_str+my_str2
+print(my_str3)
+
+my_str1="python"
+my_str2="scripting"
+my_str3=my_str1+" "+my_str2+" "+"Tutorials"
+print(my_str3)
+
+n1="Augustine"
+n2="Abraham"
+n3=n1+" "+n2+" "+"Billa"
+print(n3)
+
+#CASE Conversion on Strings
+
+my_string_lower=my_string.lower()
+my_string_upper=my_string.upper()
+print(my_string_lower)
+print(my_string_upper)
+
+my_string="python scripting"
+x="hi"
+#print(dir(x))
+print(my_string.swapcase())
+print(my_string.title())
+print(my_string.capitalize())
+print(my_string.casefold())
+
+# Boolean Data
+my_str="Python Tutorials"
+#help(str)  help document
+print(my_str.startswith('P'))
+print(my_str.endswith('n'))
+print(my_str.islower())
+print(my_str.isupper())
+print(my_str.istitle())
+print(my_str.isspace())
+
+
+
+# join center and zfill string operations
+x="python"
+y="-".join(x)
+print(y)
+print("*".join(x))
+print("\n".join(x))
+print("\t".join(x))
+
+
+# Center
+my_str="python"
+my_new_string="python scripting"
+my_str3="string operation"
+print(my_str.center(20))
+print(f"{my_str.center(20)}\n{my_new_string.center(20)}\n{my_str3.center(20)}")
+
+
+# Strip and slit operations on Strings
+x="Python"
+y="    Python     "
+print(x)
+print(x.strip())
+print(y.strip())
+x="python"
+print(x.strip('n'))
+
+#!/usr/local/bin/python3
+import os
+t_w=os.get_terminal_size().columns
+given_str=input("Enter your String : ")
+print(given_str) # displays left side of the screen
+print(given_str.center(122)) # displays Center of the screen
+print(given_str.ljust(122))
+print(given_str.rjust(122))
+print(given_str.rjust(t_w))
+print(given_str.rjust(122).title()) # for titles
+print(given_str.rjust(t_w).title()) # for titles
+[root@app1 /]#
+
+[root@app1 /]#
+#####################################################################################################################################
+
+7:20 PM 8/29/2019
+
+		DATA Structures of Python
+
+#######################################################################################################################################
+
+
+					FUNCTIONS 
+
+
+
+How to Define a Function
+
+Key word to define a function : def
+A function is a block of Code for some specific operation
+Functin code is re-usable
+
+Why Function is used ?
+	Code Reusability
+	improve Modularity(to understand better and readablility)
+Types of Functions
+	Built-in Functions (ex: len,id,min,max,int,input....)
+	User-Defined Functions
+	
+
+
+def display():
+	print(This is fisrt line")
+	print("This is a second line")
+	return None # good practise to use return None
+
+display()
+# Rules to define functions
+1.variables name should have only a-z,A-Z,0-9
+2.function is Case sensitive	
+3. Should not start with Number, and space
+4.Underscore is accepted
+5.Fucntion must be defined before calling
+
+
+# Convert given Code in terms of Functions without changing ouptut
+
+def welcome_message():
+	print("Welcome to Python Scripting")
+	print("Python is easy is to learn")
+	return None
+def known_concepts():
+	print("good with Basics")
+	print(This is fisrt line")
+	return None
+def new_concepts():
+	print("This is a second line")
+	return None 
+welcome_message()
+known_concepts()
+new_concepts()
+
+Scope of Variables
+1. calling a function from another Function
+def my_func1():
+	print("Welcome to Function")
+	mu_func2()
+	return None
+def func2():
+	print("Thank you")
+	my_func1()
+	return None
+my_func1()
+my_func2()
+# write the function always inside a function
+inside function variable cannot be access from other function
+
+def my_function1():
+	#x=10 (inside a function) [local variable]
+	print("Welcome to Function")
+	print("x value from func1:", x)
+	my_function2()
+	return None
+def my_function2(y):
+	print("Thank you") # Parameter
+	print("x value from func2:", y)
+	my_function1()
+	return None
+x=10 # outside a function [global variable]
+
+def main():
+	#global x # not advisiable
+	x=10
+	myfunction1()
+	myfunction2(x) # Argument
+	return None
+main()
+
+Simple Functions with Arguments
+
+read a number with increment with 10
+
+
+def get_add(p,q):
+    aresult=p+q
+    print(f'The Addition of {p} and {q} is : {aresult}')
+    return None
+
+def get_sub(m,n):
+    sresult=m-n
+    print(f'Sub of {m} and {n} is : {sresult}')
+    return None
+def main():
+    a = eval(input("Enter the first number\t:"))
+    b = eval(input("Enter the second number\t:"))
+    get_add(a,b)
+    get_sub(b,a)
+    return None
+def anothermain():
+    print("This is another function")
+    x=5
+    get_sub(10,x)
+    get_sub(12,10)
+    return None
+main()
+anothermain()
+
+
+Functions with Arguments and return Value : 
+def multiply_num_10(value):
+    result=value*10
+    return result
+
+def main():
+    num=eval(input("Enter your number: "))
+    result=multiply_num_10(num)
+    print(f'The result is {result} ')
+main()
+
+
+Functions with Default Arguments:
+
+# Function with default value
+def display(a):
+    print("The Value of a is: ", a)
+    return None
+display(4)
+display(5)
+
+def add_numbers(a,b):
+    result=a+b
+    print("The result is :", result)
+    return None
+add_numbers(4,5)
+
+def add_numbers1(a,b=1):
+    result=a+b
+    print("The result is :", result)
+    return None
+add_numbers1(4)
+
+def working_on_operation(user=root)
+    print(f'working with {user}')
+    return None
+working_on_operation()
+
+#Functions with keyword based arguments
+def display(a,b):
+    print(f'a={a}')
+    return None
+display(3,4)
+
+# Functions with variable lenght arguments
+def display(a):
+    print(type(a))
+    return None
+display(4)
+
+# Functions with variable lenght arguments
+def display(*data):
+    print(data)
+    return None
+display()
+display(4)
+display(4,5,6)
+
+def display(*data):
+    for each in data:
+        print(type(each))
+    return None
+display("hi", 345, 4.567)
+
+# Functions with variable lenght keyword based arguments
+def display(a,b):
+    print(f'The Value of a : {a}')
+    print(f'The Value of a : {b}')
+    return None
+display(1,3)
+display(b=2,a=4)
+
+def display(**karg):
+    print(karg)
+    return None
+display(b=2,a=4,c=6)
+
+
+def display(**karg):
+    print(karg)
+    return None
+
+display(b=2,a=4,c=6)
+display(x=5,y=6,path="root")
+
+def display(p,**karg):
+    print(karg)
+    print(p)
+    return None
+display(11,x=5,y=6,path="root")
+###########################################################################
+
+Using Functions of one script into another script
+calling a function from one script to another
+
+import the script
+
+import script1
+
+
+script1 # this is script1
+
+def addition(a,b):
+    print(f'The Addition of {a} and {b} is {a+b}')
+    return None
+def sub(a,b):
+    print(f'Substration of {a} and {b} is {a-b}')
+    return None
+
+script 2 # this is script2
+
+def multiplication(a,b):
+    print(f'multiplication of {a} and {b} is {a*b}')
+
+using functions of script1 to script2
+
+import script1
+#print(dir(script1))
+def multiplication(a,b):
+    print(f'multiplication of {a} and {b} is {a*b}')
+x=10
+y=10
+script1.addition(x,y)
+script1.sub(x,y)
+###########################################################################
+
+# The new structure for Python
+
+
+import sys
+import os
+import datetime
+import time
+
+def addition(a,b):
+    print(f'The addition of {a} and {b} is : {a+b}')
+    return None
+
+
+def main():
+    x=4
+    y=5
+    addition(x,y)
+    #substraction(x,y)
+    return None
+
+if __name__ == '__main__':
+    main()
+
+
+
+
+########################################################################################## Chnage current working directory
+import os,sys
+def main():
+    print("The Current working Dir is : ", os.getcwd())
+    path=input("Enter the path to change the Dir: ")
+    try:
+        os.chdir(path)
+        print("New Working Dir is :", os.getcwd())
+    except FileNotFoundError:
+        print("Please verify the path")
+    except NotADirectoryError:
+        print("Given path is not valid")
+    except PermissionError:
+        print("you do not have Access to the file")
+    except Exception as e:
+        print(e)
+	return None
+        
+if __name__ == "__main__":
+    main()
+
+
+
+
+#####################################################################################################################################
+
+
+
+
+
+
+#####################################################################################################################################
+
+
+
+
+
+#####################################################################################################################################
+
+
+
+#####################################################################################################################################
+
+
+
+
+#####################################################################################################################################
+
+
+
+
+
+
+#####################################################################################################################################
+
+
+
+
+
+
+#####################################################################################################################################
+
+
+
+#####################################################################################################################################
+
+
+
+
+#####################################################################################################################################
+
+
+
+
+
+
+#####################################################################################################################################
+
+
+
+
+
+
+
+
+#####################################################################################################################################
+
+
+
+#####################################################################################################################################
+
+
+
+
+#####################################################################################################################################
+
+
+
+
+
+
+#####################################################################################################################################
+
+
+
+
+
+
+
+
+#####################################################################################################################################
+
+
+
+#####################################################################################################################################
+
+
+
+
+#####################################################################################################################################
+
+
+
+
+
+
+#####################################################################################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
