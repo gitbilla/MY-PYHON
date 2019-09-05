@@ -385,11 +385,110 @@ print(given_str.rjust(t_w).title()) # for titles
 [root@app1 /]#
 #####################################################################################################################################
 
-7:20 PM 8/29/2019
+12:49 AM 8/31/2019
 
 		DATA Structures of Python
 
-#######################################################################################################################################
+my_values=[3,4,5,'python','devops']
+
+print(my_values)
+print(my_values[3])
+
+Data Structures are used to store a collection of data
+There are four built-in data structure
+list []
+tuples ()
+Dictionary {} with key value pair
+set{} # values are like list and tuples
+
+
+LISTS
+
+my_list1.sort()
+print(my_list1) 
+my_list1.sort(reverse=True) # reverse order
+print(my_list1)
+
+#####################################################################
+
+			Operators
+
+Operators are the pillars of any language
+The operators can be defined as a symbol which is responsible fora  particula operation between two operands
+Example + is an operators, to perform additoin operation on operands
+
+Arthimetic Operators ( + - * / % // ** )
+Assignment Operators ( = )
+Comparison Operators ( > < == != >= <=   )
+identity Operators
+membership Operators (is not in not in)
+Logical Operators ( and or not )
+Bitwise Operators
+
+#!/usr/bin/env python3
+# this is Membership Operator
+db_user=['db_admin','db_user','db_conf','db_read']
+random_user='db_admin'
+if random_user in db_user:
+    print("This user is allowed to start DB")
+else:
+    print("This user is not allowed to start DB")
+
+
+##################################################################################
+1:03 PM 9/2/2019
+
+		CONDITIONAL STATEMENTS
+
+import os
+t_w=os.get_terminal_size().columns
+given_str=input("Enter the String\t:")
+print(given_str)
+user_option=input("Do you want to align the text: yes or no ? ")
+if user_option=="yes":
+    print(given_str.center(t_w).title())
+    print(given_str.ljust(t_w).title())
+    print(given_str.rjust(t_w).title())
+
+
+
+usr_str=input("Enter String: ")
+user_input=input("convert sitring into lower case? yes or no ?")
+if user_input=="yes":
+    print(usr_str.lower())
+
+
+list_of_numbers=[2,4,6,8,10]
+user_no = eval(input("Enter the Number :"))
+if user_no in list_of_numbers:
+    print("The Number is even")
+else:
+    print("The number is odd or does not exitst")
+
+
+a=eval(input("Enter the first number: "))
+b=eval(input("Enter the second number: "))
+if a>b:
+    print(f'{a} is greater than {b}')
+elif a<b:
+    print(f'{a} is less than {b}')
+else:
+    print(f'{a} is equal to {b}')
+
+
+num=eval(input("Enter any number between 1-5 : "))
+num_word={
+    1:'one',
+    2:'two',
+    3:'Three',
+    4:'Four',
+    5:'Five'
+}
+if num in [1,2,3,4,5]:
+    print(num_word.get(num))
+else:
+    print("Not Valid, Enter gain")
+################################################################################
 
 
 					FUNCTIONS 
@@ -685,25 +784,226 @@ if __name__ == "__main__":
 
 
 #####################################################################################################################################
+12:10 AM 9/4/2019
+			MODULES
+
+
+What is a Module?
+A module is a file containing Python definitions and statements, That means Module containing python functions,classes and Variables
+
+What is the use of Modules?
+Re-usability
+
+if script name is my_module.py then the module name is my_module
+
+Types of Python Modules
+Default and Third party Modules
+
+import math
+# print(math.pi)
+#help("modules")
+#print(dir(math))
+#print(math.pow(2,3))
+print(help(math))
+
+Different ways to import module
+
+import math
+from math import *
+print(pi)
+print(pow(2,3)
+
+import math as m  # alias name for math is m
+import subprocess as sp
+import plat
+print(m.pi)
+
+import platform as pt # alias name for platform as pt
+print(pt.system())
+
+or 
+
+import platfrom,math,sys,os,subprocess,psutil
+
+
+platform modle is used to access the underlying platform's data such as hardware,
+operating system and interpreter version info
+How to use platform module in a script ?
+import platform as pt or
+import platform
+import platform import *
+import platform import system,platform
+How to list all functions and variables of a platform module?
+There is a built-in-function to list all the functions names dir()
+print(dir(platform))
+print(help(platform)
 
 
 
+import platform
+print(f' This is {platform.system()} os')
+print(f'Python version is {platform.python_version()}')
+print(platform.node())
+print(platform.architecture())
+print(platform.uname())
+
+getpass() : prompts the user for a password without echoing. the getpass module provieds a secure wat to handle the password prompts where programs interact with the users via the terminal
+
+getuser() : function to displays the login name of the user. This Function checks the environment variables LOGNAME,USER,LNAME and USERNAME, in order and returns the value of the first non-empty string
+
+import getpass
+# read a password
+#my_password=input("enter password :")
+db_pass=getpass.getpass(prompt="Enter the password :")
+print(f'The Entered password is: {db_pass}')
 
 
 
-#####################################################################################################################################
+##################################################################################3:23 AM 9/4/2019
+			SYS MODULE
+
+Inroduction to sys Module
+The Sys module provides functions and vairables used to manipulate different parts of the Python runtime envrionment
+dir(sys) = list of operations
+help(sys)  = documentation
+
+
+import sys
+#print(help(sys))
+print(sys.exit()) # stops the script
+print(sys.version)
+print(sys.path)
+
+
+#sys.argv resturns a list of command line argument passwed to a python script
+#!/usr/bin/env python
+import sys
+print(sys.argv)
+print(sys.argv[0]) # just the script name
+./test.py hello this command line argument
+
+
+import sys
+if len(sys.argv) != 3:
+    print("Usage")
+    print(f'{sys.argv[0]} <your string> <lower|upper|title>')
+    sys.exit()
+usr_str=input("Enter the string: ")
+user_action=input("Enter the action on the string (valid actions are: lower/upper/title): ")
+if user_action=='lower':
+    print(usr_str.lower())
+elif user_action=="upper":
+    print(usr_str.upper())
+elif user_action=="title":
+    print(usr_str.title())
+else:
+    print("Your options are invalid")
+
+
+##################################################################################
+11:42 PM 9/4/2019
+
+		OS MODULE
+
+This Module is used to work/Interact with operating system to automate many more taks like creating dir,removing dir, identifying current directory and etc.
+
+
+Four parts of OS mdule
+os, os.path, os.system(), os.walk()
+
+**************************************
+os.sep # path seperator
+os.getcwd() # current working dir
+os.chdir("path") # change dir
+os.listdir() # listing dir or print(os.chdir("/home/ab"))
+os.mkdir("billa") # create dir
+os.makedirs("path") # recursive directory creation function
+os.removedirs("path")
+os.rmdir("path")
+os.rename(src,dst)
+os.environ # 
+os.getuid()
+os.getgid()
+
+		OS.PATH Module
+os.path is a sub module of os
+
+print(dir(os.path))
+os.path.sep
+os.path.basename
+
+#!/usr/bin/env python3
+import os
+path='/home/vagrant'
+print(os.path.basename(path))
+print(os.path.dirname(path))
+
+#!/usr/bin/env python3
+import os
+path1='/home'
+path2='vagrant'
+print(os.path.join(path1,path2))
+
+
+#!/usr/bin/env python3
+import os
+path='/home/vagrant'
+if os.path.exists(path):
+    print("file exists")
+else:
+    print(f'{path} does not exits')
+
+#!/usr/bin/env python3
+import os
+path='/home/vagrant'
+if os.path.isfile(path):
+    print("file exists")
+else:
+    print(f'{path} is a dir')
 
 
 
+##################################################################################			OS.SYSTEM()
+execute os commnads
+os.system('pwd')
+os.system('ls')
+os.system('clear')
+
+#!/usr/bin/env python3
+import os
+cmd="date"
+rt=os.system(cmd)
+if rt==0:
+    print("your cmd was successfully executed")
+else:
+    print("your command failed")
 
 
-#####################################################################################################################################
+#!/usr/bin/env python3
+import os
+import platform
+if platform.system()=="Windows":
+    os.system('cls')
+else:
+    os.system('clear')
 
 
+os.walk(path)
+ths is like a find command,
 
-#####################################################################################################################################
+path="C:\\Users\\abraham.billa\\Desktop\\vagarant\\AUTOMATION"
+print(os.walk(path))
+print(list(os.walk(path)))
+
+#############   Search File ##################
 
 
+import os
+req_file=input("Enter the File :")
+for r,d,f in os.walk('/')
+    for each_file in f:
+	if each_file==req_file"
+	    print(os.path.join(r,each_file))
 
 
 #####################################################################################################################################
