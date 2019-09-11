@@ -963,7 +963,7 @@ else:
 
 
 
-##################################################################################			OS.SYSTEM()
+#######################################			OS.SYSTEM()
 execute os commnads
 os.system('pwd')
 os.system('ls')
@@ -1006,35 +1006,379 @@ for r,d,f in os.walk('/')
 	    print(os.path.join(r,each_file))
 
 
+##################################################################################
+12:47 AM 9/6/2019
+
+		subprocess
+
+
+the output of the commands cannot be stored in OS module 
+
+ex : out=os.system('dir') # we still get the output and the variable stores 0.
+
+
+>>> os.system('dir')
+date.py  service.py
+0
+
+
+>>> print(out)
+0
+
+So to aviod such situations we use subprocess module to store the vairable
+
+import subprocess
+sp=subprocess.Popen(cmd,shell=True,stdout=subprocess.PIPE,stderr=subprocess.PIPE,universal_newlines=True)
+#sp=subprocess.Popen(cmd,shell=True/False,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+return_code=sp.wait() # capture the output if the command was success or failure
+out,err=sp.communicate() # seperates the out and error 
+
+IMP : if shell=true # commands are strings same as os commands
+      if shell=False # commands are in list 
+
+	shell=Fasle # OS environemt variables are non-opearable
+	cmd='ls -ltr'.split() # easy way to spilt
+
+print(f'OUTPUT is : {out}')
+print(f'Error is : {err}')
+
+cmd='ls -ltr'
+shell=True
+
+>>> cmd="ls -ltr"
+>>> cmd.split()
+['ls', '-ltr']
+>>> cmd1="uptime | head"
+>>> cmd1.split()
+['uptime', '|', 'head']
+
+
+
+FIND BASH VERSION
+
+#!/usr/bin/env python3
+import subprocess
+cmd=['bash','--version']
+sp=subprocess.Popen(cmd,shell=False,stdout=subprocess.PIPE,stderr=subprocess.PIPE,universal_newlines=True)
+rc=sp.wait()
+o,e=sp.communicate()
+if rc==0:
+    #print("The output is", o.splitlines())
+    for each_line in o.splitlines():
+        if "version" in each_line and "release" in each_line:
+            #print(each_line.split()[3].split('(')[0])
+            ver=each_line.split()[3].split('(')[0]
+else:
+    print("Command failed with error", e)
+print(f'The Bash Version is {ver}')
+
+FIND the LINUX VERSION
+
+#!/usr/bin/env python
+import subprocess
+cmd=['cat', '/etc/redhat-release']
+sp=subprocess.Popen(cmd,shell=False,stdout=subprocess.PIPE,stderr=subprocess.PIPE,universal_newlines=True)
+rc=sp.wait()
+o,e=sp.communicate()
+if rc==0:
+    for each_line in o.splitlines():
+        if "CentOS" in each_line :
+            print(each_line.split()[3].split('(')[0])
+
+
+
+
+#############################################################11:18 PM 9/7/2019
+
+		DATE and TIME MODULE
+
+
+import datetime
+print(datetime.datetime.today()) # to get the local time from the server
+print(datetime.datetime.now()) # to get the time zone for other regions
+
+#create a object to get the time zone
+import pytz
+ist=pytz.timezone('Asia/Kolkata')
+print(datetime.datetime.now(ist))
+# to get the Month and year
+print(datetime.datetime.now().year)
+print(datetime.datetime.now().month)
+print(datetime.datetime.now().day)
+print(datetime.datetime.now().hour)
+print(datetime.datetime.now().minute)
+print(datetime.datetime.now().second)
+# to format the date with 2 digit (  http://strftime.org/ )
+print(datetime.datetime.now().strftime("%y-%m-%d"))
+print(datetime.datetime.now().strftime("%Y-%m-%d"))
+print(datetime.datetime.now().strftime("%c"))
+
+
+import datetime
+import pytz
+print(datetime.datetime.max)
+print(datetime.datetime.fromtimestamp(903456))
+
+
+# FInd the files older than x Days
+
+#!/usr/bin/env python3
+import os
+import sys
+import datetime
+required_path=input("Enter the path :")
+age=50
+#dir(os.path)
+if not os.path.exists(required_path):
+    print("Please provide valid path")
+    sys.exit(1)
+if os.path.isfile(required_path):
+    print("Provide dir path")
+    sys.exit(2)
+today=datetime.datetime.now()
+for each_file in os.listdir(required_path):
+    each_file_path=os.path.join(required_path,each_file)
+    if os.path.isfile(each_file_path):
+        file_creation_date=datetime.datetime.fromtimestamp(os.path.getctime(each_file_path))
+        #print(each_file_path,today-file_creation_date)
+        diff_days=(today-file_creation_date).days
+        if diff_days > age:
+            #print(each_file_path,(today-file_creation_date).days)
+            print(each_file_path,diff_days)
+
+
+
+
+#############################################################
+1:28 AM 9/9/2019
+
+		LOOPS : Execute a block of code multiple times
+
+path is always a string
+
+Why Loops:
+All Programming languages need a way to execute block of code many a times, this possible with loops.
+
+Python has two loops:
+for loop
+while loop
+
+for Loop: The For loop in python is used to iterate over a sequence (list, tuple, string ) or other iterable objects
+
+While Loop : used to execute a block of statements repeatedly until a given condition is satisfied.
+
+The While loop is used to iterate over a block of code as long as the test expression/condition is true
+
+
+
+my_list=[10,2,45,33,24,65,44,29]
+for each_no in my_list:
+    reminder=each_no%2
+    if reminder == 0:
+        print(f'{each_no} The number is even')
+    else:
+        print(f'{each_no} is Odd')
+
+
+# Read the Path and checek for File and Dir
+
+import os
+path=input("Enter the Path :")
+if os.path.exists(path):
+    print(f'The given path {path} exists')
+    if os.path.isfile(path):
+        print(f"The entered path is a File : {path}")
+    else:
+        print("The given path is a Dir")
+else:
+    print(f'The given path does not exists')
+
+
+
+LOOP to check files and Dir's
+
+import os
+import sys
+path=input("Enter the Path :")
+if os.path.exists(path):
+    print(f"The path is Valid {path}")
+else:
+    print(f"The path is invalid {path}")
+    sys.exit(1)
+list_of_file=os.listdir(path)
+for each_file in list_of_file:
+    file_dir=os.path.join(path,each_file)
+    #print(file_dir)
+    if os.path.isfile(file_dir):
+        print(f'{file_dir} is a File')
+    else:
+        print(f'{file_dir} is a Dir')
+
+
+
+Read a String and print chars and index values
+
+usr_string=input("Enter the string :")
+index=0
+for each_char in usr_string:
+    print(f'{each_char} ---> {index}')
+    index=index+1
+
+
+
+Find all files in a directory with extensions .sh/ .py/ .txt
+
+#!/usr/bin/env python3
+import os
+req_path=input("Enter the path :")
+if os.path.isfile(req_path):
+    print(f'The given path {req_path} is a file,Please Enter only Dir\'s')
+else:
+    all_files_dirs=os.listdir(req_path)
+    if len(all_files_dirs)==0:
+        print(f'The given path is {req_path} : EMPTY')
+    else:
+        req_extension=input("Enter the extension .py/ .sh/ .log/ .txt: ")
+        req_files=[]
+        for each_file in all_files_dirs:
+            if each_file.endswith(req_extension):
+                req_files.append(each_file)
+        if len(req_files)==0:
+            print(f'There are no {req_extension} in the location {req_path}')
+        else:
+            print(f'There are {len(req_files)} in the location of {req_path}')
+            print(f'The list of files are: {req_files}')
+
+
+# For loop for String,list,tuple and Dictionaries
+my_string="Working with Loops"
+print(my_string)
+
+for each_char in my_string:
+    print(each_char)
+# or
+print("\n".join(my_string))
+
+my_list=[1,2,3,4,5]
+for each_value in my_list:
+    print(each_value)
+my_tuple=[(1,2),(4,5),(6,7)]
+#for each_tuple in my_tuple:  #  very important
+    #print(each_tuple) # to unpack two variables in the list
+for first,second in my_tuple:
+    print(first,second)
+my_dict={'a':1, 'b':2,'c':3}
+for each_dic in my_dict: #  or for each_dic in my_dict.keys():  # both are same
+    print(each_dic)
+for each_dic in my_dict.values():
+    print(each_dic)
+# Now keys and Values
+for key,value in my_dict.items():
+    #print(key,value)
+    print(key)
+
+my_dic={'name':'billa','age':38,'place':'HYD'}
+print('my name is', my_dic['name'], 'iam', (my_dic['age']), 'years old' )
+
+
+#while loop
+# To repeat a code ten times
+for each in range(10):
+    print("Welcome to Loops")
+# To repeat the above code infinite
+# import time
+# while True:
+#     print("Monitoring File System")
+#     time.sleep(2)
+
+cnt=1
+while cnt <=5:
+    print("hello")
+    cnt=cnt+1
+
+
+BREAK
+
+for each in [3,5,8,9.11,14]:
+    print(each)
+    if each==8:
+        break
+
+CONTINUE
+
+for each in range(1,11):
+    if each == 7:
+        continue
+    print(each)
+
 #####################################################################################################################################
 
+WORKING With Text Files
+
+open File
+w open a file
+a append the file
+r read mode 
+
+#create a empty file
+fo=open('new_file.txt','w')
+
+fo.close()
+
+
+##########################################################################12:05 AM 9/11/2019
+
+		REGULAR EXPRESSION
+
+The Regex is a procedure in any language to look for a speacial pattern in a given text 
+
+What is a pattern ?
+it is a sequence of characters which represents multiple strings
+
+ex: 'i[st]' --> is, it
+	python[23] ---> python2, python3
+
+different operations
+
+match()
+search()
+findall()
+finditer()
+sub()
+split()
+compile()
+
+Rules to Create pattern
+
+import re
+syntax:
+	re.search(pattern,text)
+	re.match(pattern,text)
+	re.findall(pattern,text)
+
+How to Use Findall
+import re
+print(re.findall(pattern,text))
+
+import re
+text="This is a scripting language and it is easy"
+#my_pattern="is"
+my_pattern="i[st]"
+print(re.findall(my_pattern,text))
 
 
 
-
-
-#####################################################################################################################################
-
-
-
-
-
-
-#####################################################################################################################################
-
-
-
-#####################################################################################################################################
-
-
-
-
-#####################################################################################################################################
-
-
-
-
-
+import re
+text="This is for python2 and there are two major version python3 and python4 "
+pat=r'\bpython[23]?\b'
+match_ob=re.search(pat,text)
+if match_ob:
+    print("match from your pattern: ",match_ob.group())
+    print('starting index :',match_ob.start())
+    print('ending index :',match_ob.end()-1)
+    print('lenght :', match_ob.end()-match_ob.start())
+else:
+    print("No match found")
 
 #####################################################################################################################################
 
